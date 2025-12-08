@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ContagemConsignados.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ContagemConsignados.Mvvm.View"
+    Title="ContagemConsignados"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Nova Contagem"
+        ContentTemplate="{DataTemplate views:NewCount}"
+        Route="NewCount" />
+
+</Shell>

@@ -1,0 +1,47 @@
+.NET / C# Essentials
+
+bin/ obj/ .dll .exe .appx .appxbundle .msix .msixbundle
+
+Visual Studio
+
+.vs/ .user .userosscache .suo .cache .pdb .pri .dbmdl .jfm *.VC.db
+
+NuGet
+
+packages/ .nupkg .snupkg .nuget/ project.lock.json
+project.fragment.lock.json
+
+MAUI: Android
+
+.apk .aab *.keystore /Resources/Resource.designer.cs
+/obj/Release/android/ **/obj/Debug/android/
+
+MAUI: iOS
+
+.ipa .app .xcworkspace/ .xcuserstate .xcuserdata/
+.xcodeproj/project.xcworkspace/
+
+MAUI: Mac Catalyst
+
+.app/ .dSYM/ *.xcarchive/
+
+MAUI: Windows
+
+.appx .appxbundle .appxrecipe _TemporaryKey.pfx
+
+Logs / Temp
+
+.log .tmp .temp .bak
+
+OS Files
+
+Thumbs.db *.DS_Store
+
+Settings you do NOT want in Git
+
+appsettings.Development.json appsettings.Local.json .secret.json .pfx
+.cer .key
+
+JetBrains Rider
+
+.idea/ *.sln.iml
