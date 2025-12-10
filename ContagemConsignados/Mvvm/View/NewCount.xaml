@@ -3,7 +3,6 @@
     x:Class="ContagemConsignados.Mvvm.View.NewCount"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
     Title="NOVA CONTAGEM">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,6 +15,7 @@
 
         <Button
             Margin="20"
+            Command="{Binding OpenCameraCommand}"
             CornerRadius="30"
             FontSize="24"
             HeightRequest="60"
