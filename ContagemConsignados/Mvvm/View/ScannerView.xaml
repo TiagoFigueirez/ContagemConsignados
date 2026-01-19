@@ -8,6 +8,8 @@
         x:Name="cameraView" 
         IsDetecting="True" 
         HorizontalOptions="Fill"
+        
         VerticalOptions="Fill"
-        BarcodesDetected="cameraView_BarcodesDetected"></zxing:CameraBarcodeReaderView>
+        BarcodesDetected="cameraView_BarcodesDetected">
+    </zxing:CameraBarcodeReaderView>
 </ContentPage>
