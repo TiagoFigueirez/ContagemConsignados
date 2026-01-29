@@ -8,10 +8,72 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label
-            HorizontalOptions="Start"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Start" />
+
+        <CollectionView
+            Margin="10"
+            ItemsSource="{Binding Products}"
+            SelectionMode="None">
+            <CollectionView.Header>
+                <Grid
+                    Padding="8"
+                    BackgroundColor="#DDD"
+                    ColumnDefinitions="*,*,*,Auto">
+
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        Text="Código" />
+
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        Text="Lote" />
+
+                    <Label
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        Text="Validade" />
+
+                    <Label
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="End"
+                        Text="Qtd" />
+
+                </Grid>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="8"
+                        BackgroundColor="#EEE"
+                        ColumnDefinitions="*,*,*,Auto, Auto"
+                        RowSpacing="1">
+
+                        <Label Grid.Column="0" Text="{Binding Codigo}" />
+
+                        <Label Grid.Column="1" Text="{Binding Lote}" />
+
+                        <Label Grid.Column="2" Text="{Binding DataValidade}" />
+
+                        <Label
+                            Grid.Column="3"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="End"
+                            Text="{Binding Quantidade}" />
+
+                        <Button Grid.Column="4"
+                                Text="🗑" BackgroundColor="Transparent" >
+                            
+                            
+                        </Button>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <Button
             Margin="20"

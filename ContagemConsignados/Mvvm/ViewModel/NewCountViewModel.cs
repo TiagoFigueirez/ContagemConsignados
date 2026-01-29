@@ -9,8 +9,9 @@ namespace ContagemConsignados.Mvvm.ViewModel
     public class NewCountViewModel : ObservableObject
     {
         private readonly INavigation? _navigation;
-        public ObservableCollection<Product>? Products { get; set; } = new();
         public ICommand? OpenCameraCommand { get; }
+        public ICommand? DeleteProduct {  get; }
+        public ObservableCollection<Product>? Products { get; set; } = new();
         public NewCountViewModel() : this(Application.Current.MainPage.Navigation) { }
         public NewCountViewModel(INavigation? navigation)
         {
@@ -25,16 +26,27 @@ namespace ContagemConsignados.Mvvm.ViewModel
                 {
                     var dataProducts = code.Split(' ');
 
-                    var Product = new Product()
+                    var existingProduct = Products.FirstOrDefault(p => p.Codigo == dataProducts[0] && p.Lote == dataProducts[1]);
+
+                    if(existingProduct is null)
                     {
-                        Codigo = dataProducts[0],
-                        Lote = dataProducts[1],
-                        DataValidade = dataProducts[2]
-                    };
+                        var Product = new Product()
+                        {
+                            Codigo = dataProducts[0],
+                            Lote = dataProducts[1],
+                            DataValidade = dataProducts[2],
+                            Quantidade = 1
 
-                    Products.Add(Product);
+                        };
 
-                    await _navigation!.PopAsync();
+                        Products.Add(Product);
+                    }
+                    else
+                    {
+                        existingProduct.Quantidade++;
+                    }
+
+                        await _navigation!.PopAsync();
                 };
 
                 await _navigation!.PushAsync(scannerPage);
