@@ -3,6 +3,7 @@
     x:Class="ContagemConsignados.Mvvm.View.NewCount"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="CountPage"
     Title="NOVA CONTAGEM">
     <Grid>
         <Grid.RowDefinitions>
@@ -11,6 +12,7 @@
 
         <CollectionView
             Margin="10"
+            ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding Products}"
             SelectionMode="None">
             <CollectionView.Header>
@@ -43,33 +45,41 @@
                 </Grid>
             </CollectionView.Header>
 
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid
-                        Padding="8"
-                        BackgroundColor="#EEE"
-                        ColumnDefinitions="*,*,*,Auto, Auto"
-                        RowSpacing="1">
+                    <SwipeView>
 
-                        <Label Grid.Column="0" Text="{Binding Codigo}" />
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
 
-                        <Label Grid.Column="1" Text="{Binding Lote}" />
+                                <SwipeItem
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteProductCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Excluir" />
 
-                        <Label Grid.Column="2" Text="{Binding DataValidade}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
 
-                        <Label
-                            Grid.Column="3"
-                            FontAttributes="Bold"
-                            HorizontalTextAlignment="End"
-                            Text="{Binding Quantidade}" />
+                        <Grid
+                            Padding="8"
+                            BackgroundColor="#EEE"
+                            ColumnDefinitions="*,*,*,Auto">
 
-                        <Button Grid.Column="4"
-                                Text="🗑" BackgroundColor="Transparent" >
-                            
-                            
-                        </Button>
+                            <Label Grid.Column="0" Text="{Binding Codigo}" />
+                            <Label Grid.Column="1" Text="{Binding Lote}" />
+                            <Label Grid.Column="2" Text="{Binding DataValidade}" />
 
-                    </Grid>
+                            <Label
+                                Grid.Column="3"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Quantidade}" />
+
+                        </Grid>
+
+                    </SwipeView>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>

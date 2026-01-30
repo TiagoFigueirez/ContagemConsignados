@@ -69,6 +69,10 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="3.0.2" />
+		<PackageReference Include="SQLitePCLRaw.provider.e_sqlite3" Version="3.0.2" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.6.0" />
 	</ItemGroup>
 
@@ -79,6 +83,10 @@
 	  <MauiXaml Update="Mvvm\View\ScannerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

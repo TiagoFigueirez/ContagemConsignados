@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 namespace ContagemConsignados.Mvvm.Model
 {
         public partial class Product : ObservableObject
         {
+            [PrimaryKey, AutoIncrement]
             public int Id { get; set; }
 
             [ObservableProperty]
