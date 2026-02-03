@@ -1,5 +1,8 @@
-﻿using ContagemConsignados.Services.Interface;
+﻿using ContagemConsignados.AppDataBase;
+using ContagemConsignados.Mvvm.View;
+using ContagemConsignados.Mvvm.ViewModel;
 using ContagemConsignados.Services;
+using ContagemConsignados.Services.Interface;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -23,7 +26,18 @@ namespace ContagemConsignados
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<IProductRepository, ProductServices>();
+            builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddSingleton<IProductServices, ProductServices>();
+            builder.Services.AddTransient<NewCountViewModel>();
+            builder.Services.AddSingleton<AppDatabase>(s =>
+            {
+                var dbPath = Path.Combine(
+                    FileSystem.AppDataDirectory,
+                    "AccountProducts.db3");
+
+                return new AppDatabase(dbPath);
+            });
+
             return builder.Build();
         }
     }

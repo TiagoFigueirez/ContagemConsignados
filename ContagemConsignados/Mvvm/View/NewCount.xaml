@@ -87,7 +87,7 @@
 
         <Button
             Margin="20"
-            Command="{Binding OpenCameraCommand}"
+            Clicked="Button_Clicked"
             CornerRadius="30"
             FontSize="24"
             HeightRequest="60"

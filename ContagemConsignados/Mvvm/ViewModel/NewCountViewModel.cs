@@ -1,41 +1,47 @@
 ﻿using ContagemConsignados.Mvvm.Model;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ContagemConsignados.Mvvm.View;
 using CommunityToolkit.Mvvm.Input;
+using ContagemConsignados.Services.Interface;
 
 namespace ContagemConsignados.Mvvm.ViewModel
 {
     public partial class NewCountViewModel : ObservableObject
     {
-        private readonly INavigation? _navigation;
-        public ObservableCollection<Product> Products { get; set; } = new();
-        public NewCountViewModel(INavigation? navigation)
-        {
-            _navigation = navigation;
+        private readonly IUnitOfWork _wof;
+        private CountModel _countAtual;
 
+        [ObservableProperty]
+        private ObservableCollection<Product> products;
+
+        public NewCountViewModel(IUnitOfWork wof)
+        {
+            _wof = wof;
+            Products = new ObservableCollection<Product>();
         }
 
         [RelayCommand]
-        private async Task OpenCamera()
+        public async Task InitializeAsync()
         {
-            var scannerVm = new ScannerViewModel();
-            var scannerPage = new ScannerView()
+            _countAtual = await _wof.CountServices.GetOpenCount();
+
+            if(_countAtual == null)
             {
-                BindingContext = scannerVm
-            };
+                _countAtual = new CountModel
+                {
+                    DateCount = DateTime.Now,
+                    Status = 0
+                };
 
-            scannerVm.CodeRead += async (s, code) =>
-            {
-                AddOrIncrementProdut(code);
-                await _navigation!.PopAsync();
-            };
+                await _wof.CountServices.AddCount(_countAtual);
+            }
+            var products = await _wof.ProductServices.GetByCount(_countAtual.Id);
+            Products = new ObservableCollection<Product>(products);
 
-            await _navigation!.PushAsync(scannerPage);
-
+            
         }
 
-        private void AddOrIncrementProdut(string code)
+        public async Task AddOrIncrementProductAsync(string code)
         {
             var data = code.Split(' ');
 
@@ -43,17 +49,22 @@ namespace ContagemConsignados.Mvvm.ViewModel
 
             if(exsting is null)
             {
-                Products.Add(new Product()
+                var product = new Product
                 {
                     Codigo = data[0],
                     Lote = data[1],
                     DataValidade = data[2],
-                    Quantidade = 1
-                });
+                    Quantidade = 1,
+                    CountId = _countAtual.Id
+                };
+
+                await _wof.ProductServices.Add(product);
+                Products.Add(product);
             }
             else
             {
                 exsting.Quantidade++;
+                await _wof.ProductServices.Update(exsting);
             }
         }
 

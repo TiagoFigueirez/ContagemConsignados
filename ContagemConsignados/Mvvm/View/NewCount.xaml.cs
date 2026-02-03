@@ -1,21 +1,41 @@
 using ContagemConsignados.Mvvm.ViewModel;
+using System.Threading.Tasks;
 
 namespace ContagemConsignados.Mvvm.View;
 
 public partial class NewCount : ContentPage
 {
-	public NewCount()
+	private readonly NewCountViewModel _vm;
+	
+	public NewCount(NewCountViewModel vm)
 	{
 		InitializeComponent();
+		BindingContext = _vm;
+		_vm = vm;
+
 	}
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
-        base.OnAppearing();
+		base.OnAppearing();
+        await _vm.InitializeAsync();
+		
+    }
 
-		if(BindingContext == null)
-		{
-			BindingContext = new NewCountViewModel(Navigation);
-		}
+    private async void Button_Clicked(object sender, EventArgs e)
+	{
+        var scannerVm = new ScannerViewModel();
+        var scannerPage = new ScannerView
+        {
+            BindingContext = scannerVm
+        };
+
+        scannerVm.CodeRead += async (s, code) =>
+        {
+            await _vm.AddOrIncrementProductAsync(code);
+            await Navigation.PopAsync();
+        };
+
+        await Navigation.PushAsync(scannerPage);
     }
 }
