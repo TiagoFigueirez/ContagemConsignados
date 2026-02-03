@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using ZXing.Net.Maui;
+﻿using ContagemConsignados.Services.Interface;
+using ContagemConsignados.Services;
+using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
 namespace ContagemConsignados
@@ -22,7 +23,7 @@ namespace ContagemConsignados
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<IProductRepository, ProductServices>();
             return builder.Build();
         }
     }

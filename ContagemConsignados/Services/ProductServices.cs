@@ -5,7 +5,7 @@ using SQLite;
 namespace ContagemConsignados.Services
 {
 
-    internal class ProductRepository : IProductRepository
+    internal class ProductServices : IProductRepository
     {
         private SQLiteAsyncConnection _dbConnection;
         public async Task InitializeAsync()
@@ -13,6 +13,7 @@ namespace ContagemConsignados.Services
             await SetUpDb();
         }
         private async Task SetUpDb()
+
         {
             if(_dbConnection == null)
             {
