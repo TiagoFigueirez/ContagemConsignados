@@ -12,4 +12,9 @@
         ContentTemplate="{DataTemplate views:NewCount}"
         Route="NewCount" />
 
+    <ShellContent
+        Title="Contagens Anteriores"
+        ContentTemplate="{DataTemplate views:PreviousCount}"
+        Route="PreviousCount" />
+
 </Shell>

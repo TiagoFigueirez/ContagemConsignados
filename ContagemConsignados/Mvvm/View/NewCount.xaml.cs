@@ -12,15 +12,12 @@ public partial class NewCount : ContentPage
 		InitializeComponent();
         _vm = vm;
         BindingContext = _vm;
-		
-
 	}
 
     protected override async void OnAppearing()
     {
 		base.OnAppearing();
         await _vm.InitializeAsync();
-		
     }
 
     private async void Button_Clicked(object sender, EventArgs e)

@@ -12,8 +12,7 @@ namespace ContagemConsignados.Mvvm.ViewModel
     {
         private readonly IUnitOfWork _wof;
         private CountModel _countAtual;
-        public ICommand OpenCameraCommand;
-        public event Action CameraCompleted;
+        public ICommand OpenCameraCommand { get; }
 
         [ObservableProperty]
         private ObservableCollection<Product> products;
@@ -98,7 +97,6 @@ namespace ContagemConsignados.Mvvm.ViewModel
             {
                 Products.Remove(product);
                 _wof.ProductServices.Delete(product);
-
             }
         }
 

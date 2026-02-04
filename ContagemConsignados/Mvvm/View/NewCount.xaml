@@ -5,10 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="CountPage"
     Title="NOVA CONTAGEM">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+
+    <VerticalStackLayout>
+
+        <Grid Margin="10,5">
+            <Label
+                Grid.Column="0"
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="PRODUTOS CONTADOS"
+                VerticalOptions="Center" />
+            <Button
+                Grid.Column="1"
+                Command="{Binding OpenCameraCommand}"
+                CornerRadius="10"
+                FontSize="20"
+                HeightRequest="30"
+                HorizontalOptions="End"
+                Text="+"
+                VerticalOptions="End" />
+        </Grid>
 
         <CollectionView
             Margin="10"
@@ -86,16 +102,9 @@
         </CollectionView>
 
         <Button
-            Margin="20"
-            Clicked="Button_Clicked"
-            CornerRadius="30"
-            FontSize="24"
-            HeightRequest="60"
-            HorizontalOptions="End"
-            Shadow="{Shadow Brush=Black,
-                            Opacity=0.8}"
-            Text="+"
-            VerticalOptions="End"
-            WidthRequest="60" />
-    </Grid>
+            Margin="80,10"
+            Text="FINALIZAR "
+            VerticalOptions="End" />
+
+    </VerticalStackLayout>
 </ContentPage>

@@ -80,6 +80,9 @@
 	  <MauiXaml Update="Mvvm\View\NewCount.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Mvvm\View\PreviousCount.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Mvvm\View\ScannerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
