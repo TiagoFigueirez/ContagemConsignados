@@ -1,8 +1,10 @@
-﻿using ContagemConsignados.Mvvm.Model;
-using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ContagemConsignados.Mvvm.Model;
+using ContagemConsignados.Mvvm.View;
 using ContagemConsignados.Services.Interface;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ContagemConsignados.Mvvm.ViewModel
 {
@@ -10,6 +12,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
     {
         private readonly IUnitOfWork _wof;
         private CountModel _countAtual;
+        public ICommand OpenCameraCommand;
+        public event Action CameraCompleted;
 
         [ObservableProperty]
         private ObservableCollection<Product> products;
@@ -18,6 +22,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
         {
             _wof = wof;
             Products = new ObservableCollection<Product>();
+            OpenCameraCommand = new Command(async () => await OpenCamera());
+            
         }
 
         [RelayCommand]
@@ -39,6 +45,23 @@ namespace ContagemConsignados.Mvvm.ViewModel
             Products = new ObservableCollection<Product>(products);
 
             
+        }
+
+        private async Task OpenCamera()
+        {
+            var scannerVm = new ScannerViewModel();
+            var scannerPage = new ScannerView
+            {
+                BindingContext = scannerVm
+            };
+
+            scannerVm.CodeRead += async (s, code) =>
+            {
+                await AddOrIncrementProductAsync(code);
+                await Shell.Current.Navigation.PopAsync();
+            };
+
+            await Shell.Current.Navigation.PushAsync(scannerPage);
         }
 
         public async Task AddOrIncrementProductAsync(string code)
@@ -74,6 +97,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
             if (Products.Contains(product))
             {
                 Products.Remove(product);
+                _wof.ProductServices.Delete(product);
+
             }
         }
 

@@ -10,8 +10,9 @@ public partial class NewCount : ContentPage
 	public NewCount(NewCountViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = _vm;
-		_vm = vm;
+        _vm = vm;
+        BindingContext = _vm;
+		
 
 	}
 
