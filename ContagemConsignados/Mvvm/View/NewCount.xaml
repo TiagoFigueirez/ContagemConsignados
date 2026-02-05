@@ -103,6 +103,8 @@
 
         <Button
             Margin="80,10"
+            Command="{Binding OpenCountCommand}"
+            CommandParameter="{Binding .}"
             Text="FINALIZAR "
             VerticalOptions="End" />
 

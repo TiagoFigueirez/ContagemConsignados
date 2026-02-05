@@ -26,7 +26,10 @@ namespace ContagemConsignados.Services
                 .Table<CountModel>()
                 .FirstOrDefaultAsync(c => c.Status == 0);
 
-        
+        public Task<CountModel?> GetCountById(int id)
+            => _database.Connection
+                .Table<CountModel>()
+                .FirstOrDefaultAsync(c => c.Id == id);
 
         public Task<int> AddCount(CountModel count)
             => _database.Connection.InsertAsync(count);

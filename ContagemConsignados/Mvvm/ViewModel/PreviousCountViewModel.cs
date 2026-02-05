@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ContagemConsignados.Mvvm.Model;
+using ContagemConsignados.Mvvm.View;
 using ContagemConsignados.Services.Interface;
 using System.Collections.ObjectModel;
 
@@ -25,6 +26,17 @@ namespace ContagemConsignados.Mvvm.ViewModel
             var counts = await _wof.CountServices.GetFinalyCount();
 
             Counts = new ObservableCollection<CountModel>(counts);
+        }
+
+        [RelayCommand]
+        public async Task OpenCount(CountModel count)
+        {
+            if (count == null)
+                return;
+
+            await Shell.Current.GoToAsync(
+                $"{nameof(CountDetail)}?countId={count.Id}"
+                );
         }
     }
 }

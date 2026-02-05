@@ -12,6 +12,7 @@ namespace ContagemConsignados.Mvvm.ViewModel
     {
         private readonly IUnitOfWork _wof;
         private CountModel _countAtual;
+
         public ICommand OpenCameraCommand { get; }
 
         [ObservableProperty]
@@ -100,5 +101,17 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
         }
 
+        [RelayCommand]
+        public async Task OpenCount()
+        {
+            if (_countAtual == null)
+                return;
+
+            await Shell.Current.GoToAsync(
+                $"{nameof(CountDetail)}?countId={_countAtual.Id}"
+                );
+        }
     }
+
 }
+

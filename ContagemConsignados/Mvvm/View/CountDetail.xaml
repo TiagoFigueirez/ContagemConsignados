@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContagemConsignados.Mvvm.View.CountDetail"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="CountDetail">
+
+    <VerticalStackLayout>
+        <Entry Placeholder="Observações" Text="{Binding Observer}" />
+        <Entry Placeholder="EMail" Text="{Binding Email}" />
+
+        <Button Command="{Binding UpdateCountCommand}" Text="FINALIZAR" />
+    </VerticalStackLayout>
+</ContentPage>
