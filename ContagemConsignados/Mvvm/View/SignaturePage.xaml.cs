@@ -1,4 +1,5 @@
 using ContagemConsignados.Mvvm.ViewModel;
+using ContagemConsignados.Services.Interface;
 using ContagemConsignados.Utilities;
 
 namespace ContagemConsignados.Mvvm.View;
@@ -9,18 +10,18 @@ public partial class SignaturePage : ContentPage
     public SignaturePage(SignatureViewModel vm)
 	{
 		InitializeComponent();
-		_vm = vm;
+        _vm = vm;
 		BindingContext = _vm;
 
 		AddTouch(SegnatureConferente, _vm.SignatureDrawableConferente);
 		AddTouch(SegnatureCliente, _vm.SignatureDrawableCliente);
 	}
 
-	private void AddTouch(GraphicsView view, SignatureDrawable drawable)
+    private void AddTouch(GraphicsView view, SignatureDrawable drawable)
 	{
 		view.StartInteraction += (_, e) =>
 		{
-			drawable.Move(e.Touches[0]);
+			drawable.Start(e.Touches[0]);
 			view.Invalidate();
 		};
 
@@ -41,7 +42,8 @@ public partial class SignaturePage : ContentPage
 		var imgConf = await SegnatureConferente.CaptureAsync();
 		var imgCli = await SegnatureCliente.CaptureAsync();
 
-        if (imgCli == null || imgConf == null)
+        if (imgCli == null || imgConf 
+            == null)
         {
             await DisplayAlert("Erro", "As duas assinaturas são obrigatórias.", "OK");
             return;
@@ -50,8 +52,13 @@ public partial class SignaturePage : ContentPage
         var respBytes = await ImageHelper.ToPngBase64Async(imgCli);
         var confBytes = await ImageHelper.ToPngBase64Async(imgConf);
 
+        _vm.AssinaturaCliente = respBytes;
+        _vm.AssinaturaConferente = confBytes;
+
+        await _vm.SaveSignatureAsync();
 
 
+        
     }
 
 }

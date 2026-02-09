@@ -54,27 +54,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
             Count.Email = Email;
             Count.Observer = Observer;
-            Count.Status = 1;
-
-            _wof.CountServices.UpdateCount(count);
-
-            bool confirm = await Shell.Current.DisplayAlert(
-                "Confirmação",
-                "Contagem Finalizada, Deseja já gerar o relatorio?",
-                "Sim",
-                "Não");
-
-            if (confirm) 
-            {
-                await Shell.Current.GoToAsync(
-                $"{nameof(CountDetail)}?countId={count.Id}"
-                );
-            }
-            else
-            {
-                await Shell.Current.GoToAsync(nameof(NewCount));
-               
-            }
+           
+            await Shell.Current.GoToAsync(nameof(SignaturePage));
         }
     }
 }

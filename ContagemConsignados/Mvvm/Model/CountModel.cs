@@ -15,6 +15,12 @@ namespace ContagemConsignados.Mvvm.Model
         private string? email;
 
         [ObservableProperty]
+        private string? signatureConferente;
+
+        [ObservableProperty]
+        private string? signatureCliente;
+
+        [ObservableProperty]
         private string? observer;
 
         [ObservableProperty]

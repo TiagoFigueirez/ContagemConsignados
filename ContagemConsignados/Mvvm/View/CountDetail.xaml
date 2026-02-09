@@ -3,11 +3,18 @@
     x:Class="ContagemConsignados.Mvvm.View.CountDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="CountDetail">
+    Title="DADOS ADICIONAIS">
 
     <VerticalStackLayout>
-        <Entry Placeholder="Observações" Text="{Binding Observer}" />
-        <Entry Placeholder="EMail" Text="{Binding Email}" />
+        <Entry
+            Margin="10"
+            Placeholder="Observações"
+            Text="{Binding Observer}" />
+
+        <Entry
+            Margin="10"
+            Placeholder="EMail"
+            Text="{Binding Email}" />
 
         <Button Command="{Binding UpdateCountCommand}" Text="FINALIZAR" />
     </VerticalStackLayout>
