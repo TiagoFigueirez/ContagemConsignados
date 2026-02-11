@@ -8,6 +8,10 @@
     <VerticalStackLayout>
         <Entry
             Margin="10"
+            Placeholder="Hospital"
+            Text="{Binding Hospital}" />
+        <Entry
+            Margin="10"
             Placeholder="Observações"
             Text="{Binding Observer}" />
 

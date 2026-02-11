@@ -9,6 +9,9 @@ namespace ContagemConsignados.Mvvm.Model
         public int Id { get; set; }
 
         [ObservableProperty]
+        public string? hospital; 
+
+        [ObservableProperty]
         private DateTime? dateCount;
 
         [ObservableProperty]

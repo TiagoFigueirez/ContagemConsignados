@@ -29,10 +29,12 @@ namespace ContagemConsignados
             builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
             builder.Services.AddSingleton<ICountServices, CountServices>();
             builder.Services.AddSingleton<IProductServices, ProductServices>();
+            builder.Services.AddTransient<IReportServices, ReportServices>();
             builder.Services.AddTransient<NewCountViewModel>();
             builder.Services.AddTransient<CountDetailViewModel>();
             builder.Services.AddTransient<PreviousCountViewModel>();
             builder.Services.AddTransient<SignatureViewModel>();
+
             builder.Services.AddSingleton<AppDatabase>(s =>
             {
                 var dbPath = Path.Combine(

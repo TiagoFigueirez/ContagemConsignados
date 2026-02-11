@@ -49,7 +49,7 @@ namespace ContagemConsignados.Services
             sb.AppendLine("<div>CONTROLE DE CONSIGNADOS</div>");
             sb.AppendLine("</div>");
 
-            sb.AppendLine($"<div><h3>{DateTime.UtcNow.ToString()}</h3></div>");
+            sb.AppendLine($"<div><h3>{DateTime.UtcNow.ToString("dd-MM-yyyy")}</h3></div>");
             sb.AppendLine("</div>");
 
             sb.AppendLine("<br/>");
