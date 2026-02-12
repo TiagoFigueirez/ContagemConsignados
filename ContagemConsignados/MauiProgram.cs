@@ -4,6 +4,7 @@ using ContagemConsignados.Mvvm.ViewModel;
 using ContagemConsignados.Services;
 using ContagemConsignados.Services.Interface;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using ZXing.Net.Maui.Controls;
 
 namespace ContagemConsignados
@@ -29,6 +30,9 @@ namespace ContagemConsignados
             builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
             builder.Services.AddSingleton<ICountServices, CountServices>();
             builder.Services.AddSingleton<IProductServices, ProductServices>();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<BiService>();
+
             builder.Services.AddTransient<IReportServices, ReportServices>();
             builder.Services.AddTransient<NewCountViewModel>();
             builder.Services.AddTransient<CountDetailViewModel>();
@@ -42,6 +46,17 @@ namespace ContagemConsignados
                     "AccountProducts.db3");
 
                 return new AppDatabase(dbPath);
+            });
+
+            builder.ConfigureLifecycleEvents(events =>
+            {
+#if ANDROID
+    events.AddAndroid(android => android
+        .OnCreate((activity, _) =>
+        {
+            Microsoft.Maui.ApplicationModel.Platform.Init(activity, null);
+        }));
+#endif
             });
 
             return builder.Build();
