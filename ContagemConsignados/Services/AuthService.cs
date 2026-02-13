@@ -1,4 +1,5 @@
-﻿using ContagemConsignados.Services.Interface;
+﻿using ContagemConsignados.Mvvm.Model;
+using ContagemConsignados.Services.Interface;
 using Microsoft.Identity.Client;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Platform;
@@ -9,7 +10,7 @@ namespace ContagemConsignados.Services
     public class AuthService : IAuthService
     {
         private readonly IPublicClientApplication _pca;
-
+       
         private readonly string[] _scopes = new[]
         {
             "User.Read",
@@ -20,9 +21,9 @@ namespace ContagemConsignados.Services
         public AuthService()
         {
             _pca = PublicClientApplicationBuilder
-                   .Create("cce19d37-a53f-47d7-a4a2-dabfcc63cc73")
-                   .WithAuthority(AzureCloudInstance.AzurePublic, "c85fac03-d01a-400d-bab7-926280466fc0")
-                   .WithRedirectUri($"msalcce19d37-a53f-47d7-a4a2-dabfcc63cc73://auth")
+                   .Create(MsalModel.ClientId)
+                   .WithAuthority(MsalModel.Authority)
+                   .WithRedirectUri($"msa{MsalModel.ClientId}//auth")
                    .Build();
         }
 
@@ -43,7 +44,7 @@ namespace ContagemConsignados.Services
             {
                 var result = await _pca
                             .AcquireTokenInteractive(_scopes)
-                            .WithParentActivityOrWindow(() => Platform.CurrentActivity)
+                            .WithParentActivityOrWindow(MsalModel.ParentWindow)
                             .ExecuteAsync();
                 return result;
             }
