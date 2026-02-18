@@ -1,8 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using ContagemConsignados.Mvvm.Model;
-using ContagemConsignados.Platforms.Android;
+using Microsoft.Identity.Client;
 
 namespace ContagemConsignados
 {
@@ -13,6 +14,11 @@ namespace ContagemConsignados
         {
             base.OnCreate(savedInstanceState);
             MsalModel.ParentWindow = this;
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
     }
 }

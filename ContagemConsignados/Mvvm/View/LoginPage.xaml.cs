@@ -1,10 +1,17 @@
+using ContagemConsignados.Mvvm.Model;
 using ContagemConsignados.Services.Interface;
+using Microsoft.Identity.Client;
 
 namespace ContagemConsignados.Mvvm.View;
 
 public partial class LoginPage : ContentPage
 {
 	private readonly IAuthService _authService;
+
+    private readonly string[] _scopes = new[]
+        {
+            "User.Read"
+        };
     public LoginPage(IAuthService authService)
     {
         InitializeComponent();
@@ -18,11 +25,20 @@ public partial class LoginPage : ContentPage
             LoadingIndicator.IsVisible = true;
             LoadingIndicator.IsRunning = true;
 
-            var response = _authService.LoginAsync();
+          //var  _pca = PublicClientApplicationBuilder
+          //         .Create(MsalModel.ClientId)
+          //         .WithAuthority(MsalModel.Authority)
+          //         .WithRedirectUri($"msal{MsalModel.ClientId}://auth")
+          //         .Build();
 
-            if (!string.IsNullOrEmpty(response.Result.AccessToken))
+            var result = await _authService.LoginAsync();
+
+            if (!string.IsNullOrEmpty(result.AccessToken))
             {
-                Application.Current.MainPage = new AppShell();
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage = new AppShell();
+                });
             }
 
 

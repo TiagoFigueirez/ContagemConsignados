@@ -13,8 +13,7 @@ namespace ContagemConsignados.Services
        
         private readonly string[] _scopes = new[]
         {
-            "User.Read",
-            "https://analysis.windows.net/powerbi/api/Dataset.Read.All"
+            "User.Read"
         };
 
 
@@ -23,7 +22,7 @@ namespace ContagemConsignados.Services
             _pca = PublicClientApplicationBuilder
                    .Create(MsalModel.ClientId)
                    .WithAuthority(MsalModel.Authority)
-                   .WithRedirectUri($"msa{MsalModel.ClientId}//auth")
+                   .WithRedirectUri($"msal{MsalModel.ClientId}://auth")
                    .Build();
         }
 
@@ -39,13 +38,14 @@ namespace ContagemConsignados.Services
                     .ExecuteAsync();
 
                 return result;
-            }                
-            catch
+            }
+            catch (MsalUiRequiredException)
             {
                 var result = await _pca
                             .AcquireTokenInteractive(_scopes)
                             .WithParentActivityOrWindow(MsalModel.ParentWindow)
                             .ExecuteAsync();
+
                 return result;
             }
         }
