@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="ContagemConsignados.Mvvm.View.CountDetail"
+    x:Class="ContagemConsignados.Mvvm.View.finishCountToReport"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="DADOS ADICIONAIS">
-
+    Title="finishCountToReport">
     <VerticalStackLayout>
-       
         <Entry
             Margin="10"
-            Placeholder="Observações"
-            Text="{Binding Observer}" />
-
-        <Entry
-            Margin="10"
-            Placeholder="EMail"
-            Text="{Binding Email}" />
+            Placeholder="Hospital"
+            Text="{Binding Hospital}" />
 
         <Button Command="{Binding UpdateCountCommand}" Text="FINALIZAR" />
     </VerticalStackLayout>

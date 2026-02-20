@@ -55,10 +55,15 @@ public partial class SignaturePage : ContentPage
         _vm.AssinaturaCliente = respBytes;
         _vm.AssinaturaConferente = confBytes;
 
-        await _vm.SaveSignatureAsync();
-
-
-        
+        await _vm.SaveSignatureAsync();       
     }
 
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        _vm.SignatureDrawableCliente.Clear();
+        SegnatureCliente.Invalidate();
+
+        _vm.SignatureDrawableConferente.Clear();
+        SegnatureConferente.Invalidate();
+    }
 }

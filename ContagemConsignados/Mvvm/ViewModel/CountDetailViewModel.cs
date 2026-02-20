@@ -22,6 +22,9 @@ namespace ContagemConsignados.Mvvm.ViewModel
         private CountModel count;
 
         [ObservableProperty]
+        string hospital;
+
+        [ObservableProperty]
         private ObservableCollection<Product> products;
 
         public int CountId { get; set; }
@@ -54,8 +57,11 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
             Count.Email = Email;
             Count.Observer = Observer;
-           
-            await Shell.Current.GoToAsync(nameof(SignaturePage));
+            Count.Hospital = hospital;
+
+            _wof.CountServices.UpdateCount(Count);
+
+            await Shell.Current.GoToAsync("SignaturePage");
         }
     }
 }

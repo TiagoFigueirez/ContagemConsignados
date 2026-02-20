@@ -37,6 +37,7 @@ namespace ContagemConsignados
             builder.Services.AddTransient<NewCountViewModel>();
             builder.Services.AddTransient<CountDetailViewModel>();
             builder.Services.AddTransient<PreviousCountViewModel>();
+            builder.Services.AddTransient<FinishCountToReportViewModel>();
             builder.Services.AddTransient<SignatureViewModel>();
 
             builder.Services.AddSingleton<AppDatabase>(s =>

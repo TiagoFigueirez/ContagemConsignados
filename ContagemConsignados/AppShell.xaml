@@ -16,5 +16,10 @@
         Title="Contagens Anteriores"
         ContentTemplate="{DataTemplate views:PreviousCount}"
         Route="PreviousCount" />
+    <ShellContent ContentTemplate="{DataTemplate views:SignaturePage}" Route="SignaturePage" />
+    <ShellContent
+        ContentTemplate="{DataTemplate views:CountDetail}"
+        IsVisible="False"
+        Route="CountDetail" />
 
 </Shell>

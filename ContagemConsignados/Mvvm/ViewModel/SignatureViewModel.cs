@@ -48,19 +48,13 @@ namespace ContagemConsignados.Mvvm.ViewModel
             if (confirm)
             {
                 await Shell.Current.GoToAsync(
-                $"{nameof(CountDetail)}?countId={atualityCount.Id}"
+                $"{nameof(finishCountToReport)}?countId={atualityCount.Id}"
                 );
             }
             else
             {
                 await Shell.Current.GoToAsync("///NewCount");
             }
-        }
-
-        public void ClearSignatures()
-        {
-            SignatureDrawableConferente.Clear();
-            SignatureDrawableCliente.Clear();
         }
     }
 }

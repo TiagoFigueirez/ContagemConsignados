@@ -19,7 +19,7 @@
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
 
-            <Button Text="Limpar" />
+            <Button Clicked="Button_Clicked" Text="Limpar" />
             <Button Clicked="OnSaveClicked" Text="Salvar" />
 
         </HorizontalStackLayout>
