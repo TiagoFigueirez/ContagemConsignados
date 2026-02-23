@@ -1,15 +1,19 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 
 namespace ContagemConsignados.Extensions
 {
     public static class FormatDate
     {
-        public static DateTime FomartDate(this string value)
+        public static bool FomartDate(this string value,out DateTime result)
         {
-            var stringFormat = value.Insert(2, "/").Insert(3, "/20");
-            var dateFormated = Convert.ToDateTime(stringFormat);
-
-            return dateFormated;
+            return DateTime.TryParseExact(
+                value,
+                "ddMMyy",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out result
+                );
         }
     }
 }

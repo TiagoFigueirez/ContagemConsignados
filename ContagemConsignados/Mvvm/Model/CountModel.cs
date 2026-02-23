@@ -24,6 +24,9 @@ namespace ContagemConsignados.Mvvm.Model
         private string? signatureCliente;
 
         [ObservableProperty]
+        private string? clienteName;
+
+        [ObservableProperty]
         private string? observer;
 
         [ObservableProperty]

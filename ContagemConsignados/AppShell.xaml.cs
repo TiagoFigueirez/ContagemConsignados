@@ -12,6 +12,7 @@ namespace ContagemConsignados
             Routing.RegisterRoute(nameof(PreviousCount), typeof(PreviousCount));
             Routing.RegisterRoute(nameof(SignaturePage), typeof(SignaturePage));
             Routing.RegisterRoute(nameof(finishCountToReport), typeof(finishCountToReport));
+            Routing.RegisterRoute(nameof(ScannerView), typeof(ScannerView));
         }
     }
 }

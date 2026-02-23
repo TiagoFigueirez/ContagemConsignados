@@ -81,6 +81,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Mvvm\View\finishCountToReport.xaml.cs">
+	    <DependentUpon>finishCountToReport.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Mvvm\View\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>

@@ -49,6 +49,7 @@ namespace ContagemConsignados.Mvvm.ViewModel
 
         private async Task OpenCamera()
         {
+            await Shell.Current.GoToAsync(nameof(ScannerView));
             var scannerVm = new ScannerViewModel();
             var scannerPage = new ScannerView
             {
@@ -58,10 +59,10 @@ namespace ContagemConsignados.Mvvm.ViewModel
             scannerVm.CodeRead += async (s, code) =>
             {
                 await AddOrIncrementProductAsync(code);
-                await Shell.Current.Navigation.PopAsync();
+               
             };
 
-            await Shell.Current.Navigation.PushAsync(scannerPage);
+            await Shell.Current.GoToAsync("..");
         }
 
         public async Task AddOrIncrementProductAsync(string code)

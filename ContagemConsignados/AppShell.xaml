@@ -5,21 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ContagemConsignados.Mvvm.View"
     Title="ContagemConsignados"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarIsVisible="False">
 
-    <ShellContent
-        Title="Nova Contagem"
-        ContentTemplate="{DataTemplate views:NewCount}"
-        Route="NewCount" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Nova Contagem"
+            ContentTemplate="{DataTemplate views:NewCount}"
+            Route="NewCount" />
 
-    <ShellContent
-        Title="Contagens Anteriores"
-        ContentTemplate="{DataTemplate views:PreviousCount}"
-        Route="PreviousCount" />
-    <ShellContent ContentTemplate="{DataTemplate views:SignaturePage}" Route="SignaturePage" />
-    <ShellContent
-        ContentTemplate="{DataTemplate views:CountDetail}"
-        IsVisible="False"
-        Route="CountDetail" />
+        <ShellContent
+            Title="Contagens Anteriores"
+            ContentTemplate="{DataTemplate views:PreviousCount}"
+            Route="PreviousCount" />
+
+        <ShellContent
+            ContentTemplate="{DataTemplate views:CountDetail}"
+            IsVisible="False"
+            Route="CountDetail" />
+    </FlyoutItem>
 
 </Shell>

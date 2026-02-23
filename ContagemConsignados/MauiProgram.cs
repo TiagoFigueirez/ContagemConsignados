@@ -31,6 +31,7 @@ namespace ContagemConsignados
             builder.Services.AddSingleton<ICountServices, CountServices>();
             builder.Services.AddSingleton<IProductServices, ProductServices>();
             builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<IEmailServices, EmailServices>();
             builder.Services.AddSingleton<BiService>();
 
             builder.Services.AddTransient<IReportServices, ReportServices>();
