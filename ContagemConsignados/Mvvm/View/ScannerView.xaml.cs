@@ -11,6 +11,8 @@ public partial class ScannerView : ContentPage
     {
         InitializeComponent();
 
+        BindingContext = new ScannerViewModel();
+
         cameraView.Options = new BarcodeReaderOptions
         {
             Formats = BarcodeFormats.OneDimensional,

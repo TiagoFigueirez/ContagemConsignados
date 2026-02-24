@@ -17,6 +17,12 @@
             Placeholder="EMail"
             Text="{Binding Email}" />
 
+        <Entry
+            Margin="10"
+            Placeholder="EMail"
+            Text="{Binding ClienteName}" />
+
+
         <Button Command="{Binding UpdateCountCommand}" Text="FINALIZAR" />
     </VerticalStackLayout>
 </ContentPage>

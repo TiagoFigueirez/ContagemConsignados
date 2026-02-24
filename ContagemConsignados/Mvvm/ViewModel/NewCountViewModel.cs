@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using ContagemConsignados.Mvvm.Model;
 using ContagemConsignados.Mvvm.View;
+using ContagemConsignados.Messeges;
+using CommunityToolkit.Mvvm.Messaging;
 using ContagemConsignados.Services.Interface;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -13,8 +15,6 @@ namespace ContagemConsignados.Mvvm.ViewModel
         private readonly IUnitOfWork _wof;
         private CountModel _countAtual;
 
-        public ICommand OpenCameraCommand { get; }
-
         [ObservableProperty]
         private ObservableCollection<Product> products;
 
@@ -22,8 +22,14 @@ namespace ContagemConsignados.Mvvm.ViewModel
         {
             _wof = wof;
             Products = new ObservableCollection<Product>();
-            OpenCameraCommand = new Command(async () => await OpenCamera());
-            
+
+            WeakReferenceMessenger.Default.Register<CodeReadMessage>(this, async (r, m) =>
+            {
+                await AddOrIncrementProductAsync(m.Code);
+
+                await Shell.Current.GoToAsync("..");
+            });
+
         }
 
         [RelayCommand]
@@ -43,26 +49,13 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
             var products = await _wof.ProductServices.GetByCount(_countAtual.Id);
             Products = new ObservableCollection<Product>(products);
-
             
         }
 
+        [RelayCommand]
         private async Task OpenCamera()
         {
             await Shell.Current.GoToAsync(nameof(ScannerView));
-            var scannerVm = new ScannerViewModel();
-            var scannerPage = new ScannerView
-            {
-                BindingContext = scannerVm
-            };
-
-            scannerVm.CodeRead += async (s, code) =>
-            {
-                await AddOrIncrementProductAsync(code);
-               
-            };
-
-            await Shell.Current.GoToAsync("..");
         }
 
         public async Task AddOrIncrementProductAsync(string code)

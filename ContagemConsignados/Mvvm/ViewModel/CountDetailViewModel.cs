@@ -23,6 +23,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
 
         [ObservableProperty]
         string hospital;
+        [ObservableProperty]
+        string clienteName;
 
         [ObservableProperty]
         private ObservableCollection<Product> products;
@@ -47,7 +49,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
         public async Task UpdateCount()
         {
             if (string.IsNullOrWhiteSpace(Email) ||
-                string.IsNullOrWhiteSpace(Observer))
+                string.IsNullOrWhiteSpace(Observer) ||
+                string.IsNullOrWhiteSpace(ClienteName))
             {
                 await Shell.Current.DisplayAlert(
                     "Atenção",
@@ -57,7 +60,8 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
             Count.Email = Email;
             Count.Observer = Observer;
-            Count.Hospital = hospital;
+            Count.Hospital = Hospital;
+            Count.ClienteName = ClienteName;
 
             _wof.CountServices.UpdateCount(Count);
 

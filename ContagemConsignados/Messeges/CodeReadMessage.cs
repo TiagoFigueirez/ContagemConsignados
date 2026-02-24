@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace ContagemConsignados.Messeges
 {
-    public class CodeReadMessage(string Code);
+    public record class CodeReadMessage(string Code);
     
 }

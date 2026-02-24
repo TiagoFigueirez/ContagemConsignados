@@ -21,8 +21,7 @@ namespace ContagemConsignados
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                })
-                ;
+                });
 
 #if DEBUG
     		builder.Logging.AddDebug();
@@ -32,6 +31,7 @@ namespace ContagemConsignados
             builder.Services.AddSingleton<IProductServices, ProductServices>();
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IEmailServices, EmailServices>();
+            builder.Services.AddSingleton<IUserSessionService, UserSessionService>();
             builder.Services.AddSingleton<BiService>();
 
             builder.Services.AddTransient<IReportServices, ReportServices>();

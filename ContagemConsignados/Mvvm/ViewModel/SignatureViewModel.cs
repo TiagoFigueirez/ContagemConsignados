@@ -53,7 +53,7 @@ namespace ContagemConsignados.Mvvm.ViewModel
             }
             else
             {
-                await Shell.Current.GoToAsync("///NewCount");
+                await Shell.Current.GoToAsync("..");
             }
         }
     }

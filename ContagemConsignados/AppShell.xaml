@@ -19,10 +19,6 @@
             ContentTemplate="{DataTemplate views:PreviousCount}"
             Route="PreviousCount" />
 
-        <ShellContent
-            ContentTemplate="{DataTemplate views:CountDetail}"
-            IsVisible="False"
-            Route="CountDetail" />
     </FlyoutItem>
 
 </Shell>

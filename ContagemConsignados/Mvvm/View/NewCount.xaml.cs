@@ -20,20 +20,5 @@ public partial class NewCount : ContentPage
         await _vm.InitializeAsync();
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
-	{
-        var scannerVm = new ScannerViewModel();
-        var scannerPage = new ScannerView
-        {
-            BindingContext = scannerVm
-        };
 
-        scannerVm.CodeRead += async (s, code) =>
-        {
-            await _vm.AddOrIncrementProductAsync(code);
-            await Navigation.PopAsync();
-        };
-
-        await Navigation.PushAsync(scannerPage);
-    }
 }

@@ -1,9 +1,6 @@
 ﻿using ContagemConsignados.Mvvm.Model;
 using ContagemConsignados.Services.Interface;
 using Microsoft.Identity.Client;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Platform;
-
 
 namespace ContagemConsignados.Services
 {
@@ -15,7 +12,6 @@ namespace ContagemConsignados.Services
         {
             "User.Read"
         };
-
 
         public AuthService()
         {
