@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Input;
 using ContagemConsignados.Mvvm.ViewModel;
 
 namespace ContagemConsignados.Mvvm.View;
@@ -12,6 +13,7 @@ public partial class PreviousCount : ContentPage
 		BindingContext = _vm;
 	}
 
+    
     protected override async void OnAppearing()
     {
         base.OnAppearing();

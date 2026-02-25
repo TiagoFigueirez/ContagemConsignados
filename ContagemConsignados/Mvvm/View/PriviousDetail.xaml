@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ContagemConsignados.Mvvm.View.PriviousDetail"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="PriviousDetail">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label FontAttributes="Bold" Text="Hospital" />
+            <Label Text="{Binding Count.Hospital}" />
+
+            <Label FontAttributes="Bold" Text="Data da Contagem" />
+            <Label Text="{Binding Count.Date}" />
+
+            <Label FontAttributes="Bold" Text="Email" />
+            <Label Text="{Binding Count.Email}" />
+
+            <Label FontAttributes="Bold" Text="Cliente" />
+            <Label Text="{Binding Count.ClientName}" />
+
+            <Label FontAttributes="Bold" Text="Observações" />
+            <Label Text="{Binding Count.Observer}" />
+
+            <!--  Assinaturas  -->
+            <Label FontAttributes="Bold" Text="Assinatura Cliente" />
+            <Image HeightRequest="150" Source="{Binding AssinaturaClienteImage}" />
+
+            <Label FontAttributes="Bold" Text="Assinatura Conferente" />
+            <Image HeightRequest="150" Source="{Binding AssinaturaConferenteImage}" />
+
+            <!--  Produtos  -->
+            <Label FontAttributes="Bold" Text="Produtos" />
+
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5" Padding="10">
+                            <VerticalStackLayout>
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label Text="{Binding Quantity}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

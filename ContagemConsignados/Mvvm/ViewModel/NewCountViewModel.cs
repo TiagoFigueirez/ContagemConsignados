@@ -6,7 +6,6 @@ using ContagemConsignados.Messeges;
 using CommunityToolkit.Mvvm.Messaging;
 using ContagemConsignados.Services.Interface;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace ContagemConsignados.Mvvm.ViewModel
 {
